@@ -6,7 +6,13 @@ const config = {
   ],
   darkMode: "class",
   theme: {
-    extend: {},
+    extend: {
+      extend: {
+        gridAutoColumns: {
+          '1fr': 'minmax(8rem, 1fr)',
+        }
+      }
+    },
     plugins: [],
   }
 }
