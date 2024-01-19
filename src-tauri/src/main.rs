@@ -17,13 +17,15 @@ fn user_data_dir() -> String {
     }
 }
 
+// !TODO: load this after the browser is selected
 #[tauri::command]
-fn get_bookmarks() -> String {
+fn get_bookmarks(browser: &str) -> String {
     let path = user_data_dir();
-    let bookmarks = match std::fs::read_to_string(path + "/.config/chromium/Default/Bookmarks") {
-        Ok(v) => v,
-        Err(e) => panic!("couldn't read bookmarks: {}", e),
-    };
+    let bookmarks =
+        match std::fs::read_to_string(path + "/.config/" + browser + "/Default/Bookmarks") {
+            Ok(v) => v,
+            Err(e) => panic!("couldn't read bookmarks: {}", e),
+        };
     bookmarks
 }
 
