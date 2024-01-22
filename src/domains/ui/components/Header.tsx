@@ -9,7 +9,7 @@ const Header: React.FC = () => {
   const { browser, setBrowser } = useBrowser();
 
   const handleUpdateBrowser = (value: string) => {
-    const browsers = ["chromium", "google-chrome", "google-chrome-unstable", "Firefox"];
+    const browsers = ["chromium", "google-chrome", "google-chrome-unstable", "firefox"];
     if (browsers.includes(value)) {
       setBrowser(value as K);
       return;
@@ -44,7 +44,7 @@ const Header: React.FC = () => {
                 <Label htmlFor="ChromeSnstable">Google Chrome Snstable</Label>
               </div>
               <div className="flex items-center py-1 space-x-2">
-                <Radio.Item value="Firefox" id="Firefox" />
+                <Radio.Item value="firefox" id="Firefox" />
                 <Label htmlFor="Firefox">Firefox</Label>
               </div>
             </Radio.Group>
