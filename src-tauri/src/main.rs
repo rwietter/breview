@@ -1,33 +1,10 @@
 // Prevents additional console window on Windows in release, DO NOT REMOVE!!
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
 
+mod databases;
+
+use databases::bookmarks;
 use tauri::{CustomMenuItem, Menu};
-
-// Learn more about Tauri commands at https://tauri.app/v1/guides/features/command
-#[tauri::command]
-fn greet(name: &str) -> String {
-    format!("Hello, {}! You've been greeted from Rust!", name)
-}
-
-fn user_data_dir() -> String {
-    let path = std::env::var("HOME");
-    match path {
-        Ok(v) => v,
-        Err(e) => panic!("couldn't interpret HOME: {}", e),
-    }
-}
-
-// !TODO: load this after the browser is selected
-#[tauri::command]
-fn get_bookmarks(browser: &str) -> String {
-    let path = user_data_dir();
-    let bookmarks =
-        match std::fs::read_to_string(path + "/.config/" + browser + "/Default/Bookmarks") {
-            Ok(v) => v,
-            Err(e) => panic!("couldn't read bookmarks: {}", e),
-        };
-    bookmarks
-}
 
 fn main() {
     let quit = CustomMenuItem::new("quit".to_string(), "Quit");
@@ -45,7 +22,7 @@ fn main() {
             }
             _ => {}
         })
-        .invoke_handler(tauri::generate_handler![greet, get_bookmarks])
+        .invoke_handler(tauri::generate_handler![bookmarks::get_bookmarks])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
 }

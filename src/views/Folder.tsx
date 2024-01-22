@@ -1,7 +1,6 @@
 import React from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FolderIcon } from "../domains/ui/icons/FolderIcon";
-import Layout from "../domains/ui/components/Layout";
 import { Separator } from "../domains/ui/components/Separator";
 import { GoBack } from "../domains/ui/icons/GoBack";
 import { Button } from "../domains/ui/components/Button";
@@ -40,7 +39,6 @@ const Folder: React.FC = () => {
           }
         })}
       </ul>
-
       {folders.length > 0 && bookmarks.length > 0 && <Separator className="m-3" color="#f1f1f1" />}
 
       <ul className="flex flex-wrap">

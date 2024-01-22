@@ -26,13 +26,33 @@ type Bookmarks = {
   };
 };
 
+const initialBookmarks: Bookmarks = {
+  bookmark_bar: {
+    children: [],
+    id: "",
+    name: "",
+    type: "",
+  },
+  other: {
+    children: [],
+    id: "",
+    name: "",
+    type: "",
+  },
+  synced: {
+    children: [],
+    id: "",
+    name: "",
+    type: "",
+  },
+};
+
 function App() {
-  const [bookmarks, setBookmarks] = useState<Bookmarks>({} as Bookmarks);
+  const [bookmarks, setBookmarks] = useState<Bookmarks>(initialBookmarks);
   const { browser } = useBrowser();
 
   async function fetchBookmarks() {
     const bookmarks: string = await invoke("get_bookmarks", { browser });
-    //!TODO: enviar JSON com o serde e não string
     const obj = JSON.parse(bookmarks);
     setBookmarks(obj.roots);
     return;
