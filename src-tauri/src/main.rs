@@ -1,10 +1,13 @@
 // Prevents additional console window on Windows in release, DO NOT REMOVE!!
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
 
-mod databases;
-
-use databases::bookmarks;
+use after::bookmarks;
 use tauri::{CustomMenuItem, Menu};
+
+#[tauri::command]
+fn get_bookmarks(browser: &str) -> String {
+    bookmarks::new(browser)
+}
 
 fn main() {
     let quit = CustomMenuItem::new("quit".to_string(), "Quit");
@@ -22,7 +25,7 @@ fn main() {
             }
             _ => {}
         })
-        .invoke_handler(tauri::generate_handler![bookmarks::get_bookmarks])
+        .invoke_handler(tauri::generate_handler![get_bookmarks])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
 }
