@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 pub mod bookmarks {
     use serde::{Deserialize, Serialize};
 
@@ -24,6 +25,11 @@ pub mod bookmarks {
         pub r#type: String,
     }
 }
+=======
+pub mod bookmarks;
+pub mod browsers;
+pub mod databases;
+>>>>>>> Stashed changes
 
 pub fn user_data_dir() -> String {
     let path = std::env::var("HOME");

@@ -4,6 +4,7 @@ import { Radio } from "./RadioGroup";
 import { Label } from "./Label";
 import Browser from "../icons/Browser";
 import { Browser as K, useBrowser } from "../../../stores/browser";
+import { toast } from "sonner";
 
 const Header: React.FC = () => {
   const { browser, setBrowser } = useBrowser();
@@ -12,6 +13,7 @@ const Header: React.FC = () => {
     const browsers = ["chromium", "google-chrome", "google-chrome-unstable", "firefox"];
     if (browsers.includes(value)) {
       setBrowser(value as K);
+      toast.success(`Browser updated to ${value}`, { id: browser, duration: 2000});
       return;
     }
     return;

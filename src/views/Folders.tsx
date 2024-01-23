@@ -12,14 +12,14 @@ type Bookmarks = {
 };
 
 export const Folders = ({ bookmarks }: Bookmarks) => {
-  const folders = bookmarks.children.filter((bookmark: any) => bookmark.type === "folder");
-  const urls = bookmarks.children.filter((bookmark: any) => bookmark.type === "url");
+  const folders = bookmarks?.children?.filter((bookmark: any) => bookmark.type === "folder");
+  const urls = bookmarks?.children?.filter((bookmark: any) => bookmark.type === "url");
 
   return (
     <section className="p-6">
-      <p className="text-xl font-light">{bookmarks.name}</p>
+      <p className="text-xl font-light">{bookmarks?.name}</p>
       <div className="flex flex-wrap items-start justify-start">
-        {folders.length ? (
+        {folders?.length ? (
           folders.map((folder: any) => {
             return (
               <Link
@@ -39,7 +39,7 @@ export const Folders = ({ bookmarks }: Bookmarks) => {
           <span />
         )}
 
-        {folders.length > 0 && urls.length > 0 && <Separator className="m-3" color="#f1f1f1" />}
+        {folders?.length > 0 && urls?.length > 0 && <Separator className="m-3" color="#f1f1f1" />}
 
         <ul className="flex flex-wrap items-start justify-start">
           {urls?.map((bookmark: any) => {

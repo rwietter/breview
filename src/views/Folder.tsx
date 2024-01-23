@@ -8,10 +8,10 @@ import { Button } from "../domains/ui/components/Button";
 const Folder: React.FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const folder = location.state?.folder;
+  const folder = location.state.folder;
 
-  const folders = folder.children?.filter((bookmark: any) => bookmark.type === "folder");
-  const bookmarks = folder.children?.filter((bookmark: any) => bookmark.type === "url");
+  const folders = folder?.children?.filter((bookmark: any) => bookmark.type === "folder");
+  const bookmarks = folder?.children?.filter((bookmark: any) => bookmark.type === "url");
 
   return (
     <>
@@ -26,7 +26,7 @@ const Folder: React.FC = () => {
             return (
               <Link
                 to={`/directory/${bookmark.name}`}
-                state={bookmark}
+                state={{ folder: bookmark}}
                 key={bookmark.id}
                 className="h-32 w-40 bg-gray-50 border-[1px] hover:border-gray-300 m-4 rounded-md p-4 flex items-center justify-center flex-col"
               >
@@ -39,7 +39,7 @@ const Folder: React.FC = () => {
           }
         })}
       </ul>
-      {folders.length > 0 && bookmarks.length > 0 && <Separator className="m-3" color="#f1f1f1" />}
+      {folders?.length > 0 && bookmarks?.length > 0 && <Separator className="m-3" color="#f1f1f1" />}
 
       <ul className="flex flex-wrap">
         {bookmarks?.map((bookmark: any) => {

@@ -1,0 +1,19 @@
+meta {
+  name: "Get Bookmarks",
+  type: "http",
+  seq: 1
+}
+
+get {
+  url: "http://localhost:3000/bookmarks",
+  body: ""
+}
+
+post {
+  url: "http://localhost:3000/bookmarks",
+  body: "browser"
+}
+
+headers {
+  content-type: application/json
+}
